@@ -40,7 +40,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../front-end/recipe-app/dist')));
 
   // Any route that is not API will be redirected to index.html
-  app.get('*', (req, res) => {
+  app.get(/.*$/, (req, res) => {
     res.sendFile(path.resolve(__dirname, '../', 'front-end', 'recipe-app', 'dist', 'index.html'));
   });
 } else {
