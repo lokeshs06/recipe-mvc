@@ -32,22 +32,9 @@ app.use('/api/recipes', recipeRoutes);
 // Error Handling Middleware
 app.use(errorHandler);
 
-// Serve frontend in production
-if (process.env.NODE_ENV === 'production') {
-  const path = require('path');
-  
-  // Set static folder
-  app.use(express.static(path.join(__dirname, '../front-end/recipe-app/dist')));
-
-  // Any route that is not API will be redirected to index.html
-  app.get(/.*$/, (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../', 'front-end', 'recipe-app', 'dist', 'index.html'));
-  });
-} else {
-  app.get('/', (req, res) => {
-    res.send('API is running. Please set to production to serve frontend.');
-  });
-}
+app.get('/', (req, res) => {
+  res.send('API is running.');
+});
 
 const PORT = process.env.PORT || 5000;
 

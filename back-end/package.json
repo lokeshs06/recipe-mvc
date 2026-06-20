@@ -4,8 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js",
-    "build": "npm install --include=dev --prefix ../front-end/recipe-app && npm run build --prefix ../front-end/recipe-app"
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
