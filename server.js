@@ -23,15 +23,30 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+const Recipe = require('./models/Recipe');
+
 // Routes
 app.use('/api/recipes', recipeRoutes);
 
+// Root Endpoint - Display data
+app.get('/', async (req, res) => {
+  try {
+    const recipes = await Recipe.find().sort({ createdAt: -1 });
+    res.status(200).json({
+      success: true,
+      count: recipes.length,
+      data: recipes
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: 'Server Error'
+    });
+  }
+});
+
 // Error Handling Middleware
 app.use(errorHandler);
-
-app.get('/', (req, res) => {
-  res.send('API is running.');
-});
 
 const PORT = process.env.PORT || 5000;
 
