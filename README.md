@@ -1,98 +1,137 @@
-<div align="center">
-  <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/chef-hat.svg" alt="Chef Hat" width="120"/>
+# 🍲 Recipes CRUD API
 
-  # 🍳 FlavorVault - Recipes MVC
-  
-  **Your Personal Culinary Canvas**
-  
-  [![React](https://img.shields.io/badge/React-19.0.0-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
-  [![Vite](https://img.shields.io/badge/Vite-8.0.16-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-  [![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-  [![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-  
-  ---
-</div>
+A robust, backend-only RESTful API built with Node.js, Express.js, and MongoDB. This application implements the MVC architecture to manage recipes, providing full CRUD (Create, Read, Update, Delete) functionality with structured data validation and centralized error handling.
 
-> **FlavorVault** is a full-stack MERN application that allows food enthusiasts to discover, store, and manage their favorite recipes with an elegant and modern user interface. From rich South Indian delicacies to global comfort foods, keep your kitchen adventures perfectly organized.
+## 🚀 Features
 
-## ✨ Dazzling Features
+*   **RESTful Endpoints:** Complete CRUD operations for recipes.
+*   **MVC Architecture:** Clean separation of concerns (Models, Views/Routes, Controllers).
+*   **MongoDB Atlas:** Cloud-hosted NoSQL database integration using Mongoose.
+*   **Centralized Error Handling:** Global error-catching middleware for consistent API responses.
+*   **Health Check:** Dedicated endpoint to monitor server uptime.
+*   **Postman Ready:** Included collection for 1-click testing of all routes.
 
-✨ **Rich Aesthetics** - Glassmorphism UI, smooth hover micro-animations, and a premium color palette.  
-📱 **Fully Responsive** - Flawless experience on mobile, tablet, and desktop devices.  
-🔍 **Instant Search** - Real-time client-side filtering to find your favorite dishes instantly.  
-🛡️ **Unified Deployment** - Configured for a seamless, cost-effective single-service deployment on Render.  
-🍞 **Toast Notifications** - Elegant, non-intrusive alerts for all your CRUD actions.  
-📦 **Ready-to-use Seeder** - Instantly populate your database with 30 diverse sample recipes!
+---
 
-<br/>
+## 🛠️ Tech Stack
 
-## 🛠️ Tech Stack & Architecture
+*   **Runtime:** [Node.js](https://nodejs.org/)
+*   **Framework:** [Express.js](https://expressjs.com/) (v5.x)
+*   **Database:** [MongoDB](https://www.mongodb.com/) via [Mongoose](https://mongoosejs.com/)
+*   **Security & Middleware:** `cors`, `dotenv`
+*   **Development:** `nodemon`
 
-This application employs a modern **Model-View-Controller (MVC)** architectural pattern.
+---
 
-| Layer | Technologies Used | Purpose |
-| :--- | :--- | :--- |
-| **Frontend (View)** | React 19, Tailwind CSS v4, Lucide Icons, React Router | Delivers a hyper-responsive, rich UI and seamless UX. |
-| **Backend (Controller)** | Node.js, Express.js | Handles API requests, business logic, and serves the frontend in production. |
-| **Database (Model)** | MongoDB, Mongoose | Stores recipe schemas, ingredients, and metadata. |
-| **State & API** | Context API, Custom Hooks, Axios | Manages global application state and backend communication. |
+## 📂 Project Structure
 
-<br/>
+```text
+recipes-api/
+├── config/           # Database connection logic
+├── controllers/      # Business logic for route handling
+├── middleware/       # Custom middleware (error handling)
+├── models/           # Mongoose schemas
+├── routes/           # Express route definitions
+├── .env.example      # Environment variables template
+├── package.json      # Dependencies and npm scripts
+├── seed.js           # Database population script
+└── server.js         # Entry point
+```
 
-## 🚀 Quick Start Guide
+---
+
+## 🚦 Getting Started
 
 ### Prerequisites
-Make sure you have [Node.js](https://nodejs.org/) and [Git](https://git-scm.com/) installed on your machine. You will also need a MongoDB URI.
 
-### 1. Clone the repository
+*   Node.js (v18+)
+*   MongoDB connection string (local or MongoDB Atlas)
+
+### 1. Installation
+
+Clone the repository and install dependencies:
+
 ```bash
 git clone https://github.com/lokeshs06/recipe-mvc.git
 cd recipe-mvc
+npm install
 ```
 
-### 2. Backend Setup
+### 2. Environment Configuration
+
+Rename `.env.example` to `.env` and fill in your connection details:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+NODE_ENV=development
+```
+
+### 3. Seed Database (Optional)
+
+You can quickly populate your database with 30 sample recipes:
+
 ```bash
-cd back-end
-npm install
-
-# Create a .env file based on your environment
-echo "MONGO_URI=your_mongodb_connection_string" > .env
-echo "PORT=5000" >> .env
-echo "NODE_ENV=development" >> .env
-
-# Optional: Seed the database with 30 amazing recipes!
 node seed.js
-
-# Start the development server
-npm run dev
 ```
 
-### 3. Frontend Setup
+### 4. Run the Server
+
+**Development Mode (auto-restarts on changes):**
 ```bash
-cd ../front-end/recipe-app
-npm install
-
-# Start the Vite development server
 npm run dev
 ```
-Navigate to `http://localhost:5173` to experience the app!
 
-<br/>
+**Production Mode:**
+```bash
+npm start
+```
 
-## 🌍 Unified Production Deployment
+---
 
-This repository is pre-configured with a `render.yaml` Blueprint for a unified deployment. This means both the frontend and backend are deployed onto a single Web Service on Render!
+## 📡 API Endpoints
 
-1. Connect this repository to your Render account.
-2. Select **Blueprint** deployment.
-3. Render will automatically:
-   - Install backend dependencies.
-   - Navigate to the frontend, install dependencies, and build the React app.
-   - Start the Express server which serves the API *and* the static frontend files!
+All endpoints are prefixed with `/api`.
 
-<br/>
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/health` | Check if the API is running |
+| `GET` | `/api/recipes` | Retrieve all recipes |
+| `GET` | `/api/recipes/:id` | Retrieve a specific recipe by ID |
+| `POST` | `/api/recipes` | Create a new recipe |
+| `PUT` | `/api/recipes/:id` | Update an existing recipe by ID |
+| `DELETE` | `/api/recipes/:id` | Delete a recipe by ID |
 
-<div align="center">
-  <i>Built with ❤️ for culinary creators and code enthusiasts.</i>
-</div>
+### Example Recipe Payload
+```json
+{
+  "title": "Classic Beef Burger",
+  "ingredients": ["1 lb ground beef", "4 buns", "Cheese", "Lettuce"],
+  "instructions": "Form patties. Grill for 4 mins per side. Assemble burger.",
+  "cookingTime": 15,
+  "servings": 4
+}
+```
+
+---
+
+## 🧪 Postman Documentation
+
+A Postman collection is included in the repository: `Recipes API.postman_collection.json`.
+
+1. Open Postman.
+2. Click **Import** and select the `.json` file from the repository root.
+3. The collection contains pre-configured requests with sample payloads for all CRUD operations.
+
+---
+
+## 🌍 Deployment
+
+This backend API is configured for easy deployment on **Render**.
+
+1. Create a "Web Service" on [Render](https://render.com/).
+2. Connect this GitHub repository.
+3. Render will automatically detect the `render.yaml` configuration:
+    *   **Build Command:** `npm install`
+    *   **Start Command:** `node server.js`
+4. Add your `MONGO_URI` in the Environment Variables section on the Render dashboard.
