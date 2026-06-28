@@ -117,6 +117,11 @@ All endpoints are prefixed with `/api`.
 
 ## 🧪 Postman Documentation
 
+Comprehensive API documentation is available via Postman. You can explore the full documentation, including endpoints, parameters, and sample responses, here:
+
+**[👉 View Postman API Documentation](https://documenter.getpostman.com/view/54629133/2sBXwyGSaV)**
+
+Alternatively, you can import the collection manually:
 A Postman collection is included in the repository: `Recipes API.postman_collection.json`.
 
 1. Open Postman.
